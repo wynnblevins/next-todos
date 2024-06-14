@@ -37,7 +37,6 @@ const TodosListPage = () => {
 
   return (
     <>
-      <h1>Todo Items</h1>
       <TodoItemsList 
         onSaveClick={(todoItem) => { onSaveClick(todoItem) }} 
         onAddClick={(todoItem) => { onAddClick(todoItem) }}
