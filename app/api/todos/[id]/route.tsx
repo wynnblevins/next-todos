@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from '../../../../prisma/client';
 import schema from "../schema";
 
+export interface TodoItem {
+  id: number,
+  text: string
+}
+
 export const GET = async (request: NextRequest, 
   { params }: { params: { id: string } }) => {
   const foundTodoItem = await prisma.todo.findUnique({
