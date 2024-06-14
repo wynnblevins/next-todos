@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ItemDetailPage = () => {
+const TodoDetailPage = () => {
   return (
     <div>
       Item detail page
@@ -8,4 +8,4 @@ const ItemDetailPage = () => {
   )
 }
 
-export default ItemDetailPage
+export default TodoDetailPage
