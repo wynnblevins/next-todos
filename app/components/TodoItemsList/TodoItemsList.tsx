@@ -105,7 +105,7 @@ const TodoItemsList = (props: Props) => {
         <tbody>
           { todoItemRows?.map((todo: TodoTableRow, ndx: number) => {
               return (
-                <tr className="border-b border-neutral-200 dark:border-white/10 grid-cols-3">
+                <tr className="border-b border-neutral-200 dark:border-white/10 grid-cols-3" key={ndx}>
                   <td className="whitespace-nowrap px-6 py-4">                  
                     { editing && todoItemRows[ndx].isBeingEdited ? (                        
                         <input type="text" 
