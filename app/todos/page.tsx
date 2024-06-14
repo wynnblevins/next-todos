@@ -15,13 +15,33 @@ const TodosListPage = () => {
 
     fetchTodos();
   }, [])
-  
+
+  const onDeleteClick = async (todoItem: TodoItem) => {
+    axios.delete(`/api/todos/${todoItem.id}`).then(async () => {
+      const { data: updatedTodosList } = await axios.get(`/api/todos`);
+      setTodos(updatedTodosList)
+    });
+  };
+
+  const onSaveClick = async (todoItem: TodoItem) => {
+    await axios.put(`/api/todos/${todoItem.id}`, todoItem);
+    const { data: updatedTodoItems } = await axios.get(`/api/todos`);
+    setTodos(updatedTodoItems);
+  };
+
+  const onAddClick = async (todoItem: TodoItem) => {
+    await axios.post(`/api/todos`, todoItem);
+    const { data: newTodos } = await axios.get(`/api/todos`);
+    setTodos(newTodos)
+  };
+
   return (
     <>
       <h1>Todo Items</h1>
       <TodoItemsList 
-        onSaveClick={() => {}} 
-        onDeleteClick={() => {}} 
+        onSaveClick={(todoItem) => { onSaveClick(todoItem) }} 
+        onAddClick={(todoItem) => { onAddClick(todoItem) }}
+        onDeleteClick={(todoItem) => { onDeleteClick(todoItem) }} 
         todos={todos}>
       </TodoItemsList>
     </>

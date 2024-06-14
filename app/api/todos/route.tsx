@@ -1,10 +1,10 @@
-import prisma from "../../../prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import schema from './schema';
+import { createTodo, retrieveTodos } from "@/app/services/TodoService";
 
 export const GET = async (request: NextRequest) => {
-  const items = await prisma.todo.findMany();
-  return NextResponse.json(items);
+  const todos = await retrieveTodos();
+  return NextResponse.json(todos);
 }
 
 export const POST = async (request: NextRequest) => {
@@ -15,14 +15,10 @@ export const POST = async (request: NextRequest) => {
     return NextResponse.json(validation.error.errors, { status: 400 });
   }
 
-  const newTodoItem = await prisma.todo.create({ 
-    data: {
-      text: body.text
-    }
-  });
+  const newTodo = await createTodo(body.text)  
 
   return NextResponse.json({ 
-    id: newTodoItem.id, 
-    text: newTodoItem.text 
+    id: newTodo.id, 
+    text: newTodo.text 
   });
 };

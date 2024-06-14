@@ -1,17 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from '../../../../prisma/client';
 import schema from "../schema";
+import { deleteTodo, retrieveTodoById, updateTodo } from "@/app/services/TodoService";
 
 export interface TodoItem {
-  id: number,
+  id?: number,
   text: string
 }
 
 export const GET = async (request: NextRequest, 
   { params }: { params: { id: string } }) => {
-  const foundTodoItem = await prisma.todo.findUnique({
-    where: { id: parseInt(params.id) }
-  });
+  const foundTodoItem = retrieveTodoById(params.id)
 
   if (!foundTodoItem) {
     return NextResponse.json(
@@ -33,12 +31,8 @@ export const PUT = async (request: NextRequest,
     return NextResponse.json(validation.error.errors, { status: 400 });
   }
 
-  const todoToUpdate = await prisma.todo.findUnique({
-    where: {
-      id: parseInt(params.id)
-    }
-  });
-
+  const todoToUpdate = await retrieveTodoById(params.id)
+  
   if (!todoToUpdate) {
     return NextResponse.json(
       { error: "Todo item not found" },
@@ -46,23 +40,17 @@ export const PUT = async (request: NextRequest,
     )
   }
 
-  const updatedTodo = await prisma.todo.update({
-    where: { id: parseInt(params.id) },
-    data: {
-      text: body.text
-    }
+  const updatedTodo = await updateTodo({
+    ...todoToUpdate,
+    text: body.text
   });
-
+  
   return NextResponse.json(updatedTodo);
 };
 
 export const DELETE = async (request: NextRequest, 
   { params }: { params: { id: string } }) => {
-  const todoForId = await prisma.todo.findUnique({
-    where: {
-      id: parseInt(params.id)
-    }
-  })
+  const todoForId = await retrieveTodoById(params.id);
   
   if (!todoForId) {
     return NextResponse.json(
@@ -71,9 +59,7 @@ export const DELETE = async (request: NextRequest,
     );
   }
 
-  await prisma.todo.delete({
-    where: { id: parseInt(params.id) }
-  });
+  await deleteTodo(params.id);
 
   return NextResponse.json({}, { status: 200 });
 }
