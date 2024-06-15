@@ -121,14 +121,14 @@ const TodoItemsList = (props: Props) => {
                     { editing && todoItemRows[ndx].isBeingEdited ? (                        
                         <input type="text" 
                           id="default-input" 
-                          style={{ "color": "black !importantev" }}
+                          style={{ "color": "black !important" }}
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           defaultValue={todoItemRows[ndx].text}
                           placeholder='new todo item'
                           onChange={(e) => onTodoItemChange(e, ndx)}/>
                       ) : (
                         <p 
-                          style={{'width': '100%', "color": "black !important"}} >
+                          style={{'width': '100%', "color": "black"}} >
                           { todo.text }
                         </p>
                       )
