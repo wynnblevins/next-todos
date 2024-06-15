@@ -19,3 +19,7 @@ body {
 .header-text {
   color: black
 }
+
+.todo-completed {
+  text-decoration: line-through;
+}

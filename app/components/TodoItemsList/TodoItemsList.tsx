@@ -70,17 +70,18 @@ const TodoItemsList = (props: Props) => {
   const onAddClick = async () => {    
     const newTodo = {
       text: "",
+      completed: false
     };
-    const updatedRows = [
-      ...todoItemRows,  
-      {
-        text: "",
-        isBeingEdited: false
-      }
-    ];
     
     onAdd(newTodo);
   }
+
+  const onMarkComplete = async (ndx: number) => {
+    const newRows = [...todoItemRows];
+    newRows[ndx].completed = !newRows[ndx].completed;
+    setTodoItemRows(newRows);
+    onSaveClick(newRows[ndx]);
+  };
 
   return (
     <>
@@ -107,8 +108,7 @@ const TodoItemsList = (props: Props) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
               </button>
-            )}
-              
+            )}              
             </th>
           </tr>
         </thead>
@@ -127,6 +127,10 @@ const TodoItemsList = (props: Props) => {
                           onChange={(e) => onTodoItemChange(e, ndx)}/>
                       ) : (
                         <p 
+                          onClick={() => {                             
+                            onMarkComplete(ndx);
+                          }}
+                          className={ todo.completed ? 'todo-completed' : '' }
                           style={{'width': '100%', "color": "black"}} >
                           { todo.text }
                         </p>

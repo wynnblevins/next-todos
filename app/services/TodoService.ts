@@ -26,7 +26,8 @@ export const updateTodo = async (todo: TodoItem) => {
   const updatedTodo = await prisma.todo.update({
     where: { id: todo.id },
     data: {
-      text: todo.text
+      text: todo.text,
+      completed: todo.completed
     }
   });
   return updatedTodo;

@@ -4,7 +4,8 @@ import { deleteTodo, retrieveTodoById, updateTodo } from "@/app/services/TodoSer
 
 export interface TodoItem {
   id?: number,
-  text: string
+  text: string,
+  completed: boolean,
 }
 
 export const GET = async (request: NextRequest, 
@@ -42,7 +43,8 @@ export const PUT = async (request: NextRequest,
 
   const updatedTodo = await updateTodo({
     ...todoToUpdate,
-    text: body.text
+    text: body.text,
+    completed: body.completed
   });
   
   return NextResponse.json(updatedTodo);
