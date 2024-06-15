@@ -36,14 +36,12 @@ const TodosListPage = () => {
   };
 
   return (
-    <div className='container mx-10'>
-      <TodoItemsList 
-        onSaveClick={(todoItem) => { onSaveClick(todoItem) }} 
-        onAddClick={(todoItem) => { onAddClick(todoItem) }}
-        onDeleteClick={(todoItem) => { onDeleteClick(todoItem) }} 
-        todos={todos}>
-      </TodoItemsList>
-    </div>
+    <TodoItemsList 
+      onSaveClick={(todoItem) => { onSaveClick(todoItem) }} 
+      onAddClick={(todoItem) => { onAddClick(todoItem) }}
+      onDeleteClick={(todoItem) => { onDeleteClick(todoItem) }} 
+      todos={todos}>
+    </TodoItemsList>
   )
 }
 
