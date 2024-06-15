@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { TodoItem } from '@/app/api/todos/[id]/route';
-import axios from 'axios';
 
 interface Props {
   todos: TodoItem[],
@@ -90,7 +89,7 @@ const TodoItemsList = (props: Props) => {
         <thead
           className="border-b border-neutral-200 font-medium">
           <tr className="border-b border-neutral-200">
-            <th scope="col" className="px-6 py-4">Todo</th>
+            <th scope="col" className="px-6 py-4 header-text">Todo</th>
             <th>
             { editing ? (
               <button type="button"  
