@@ -117,18 +117,19 @@ const TodoItemsList = (props: Props) => {
           { todoItemRows?.map((todo: TodoTableRow, ndx: number) => {
               return (
                 <tr className="border-b border-neutral-200 dark:border-white/10 grid-cols-3" key={ndx}>
-                  <td className="whitespace-nowrap px-6 py-4">                  
+                  <td style={{'width': '50%'}} className="whitespace-nowrap px-6 py-4">                  
                     { editing && todoItemRows[ndx].isBeingEdited ? (                        
                         <input type="text" 
+                          style={{'width': '100%'}}  
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required 
                           defaultValue={todoItemRows[ndx].text}
                           onChange={(e) => onTodoItemChange(e, ndx)}/>
                       ) : (
-                        <p>{ todo.text }</p>
+                        <p style={{'width': '100%'}} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>{ todo.text }</p>
                       )
                     }
                   </td>
-                  <td className="whitespace-nowrap px-6 py-4">                  
+                  <td style={{'width': '50%'}} className="whitespace-nowrap px-6 py-4">                  
                     { editing && todoItemRows[ndx].isBeingEdited ? (
                       <button type="button" 
                         onClick={() => { onSave(todoItemRows[ndx], ndx) }}
