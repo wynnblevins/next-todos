@@ -117,7 +117,7 @@ const TodoItemsList = (props: Props) => {
           { todoItemRows?.map((todo: TodoTableRow, ndx: number) => {
               return (
                 <tr className="border-b border-neutral-200" key={ndx}>
-                  <td style={{'width': '50%'}} className="px-6 py-4">                  
+                  <td style={{'width': '40%'}} className="px-6 py-4">                  
                     { editing && todoItemRows[ndx].isBeingEdited ? (                        
                         <input type="text" 
                           id="default-input" 
@@ -134,7 +134,7 @@ const TodoItemsList = (props: Props) => {
                       )
                     }
                   </td>
-                  <td style={{'width': '50%'}} className="whitespace-nowrap px-6 py-4">                  
+                  <td style={{'width': '60%'}} className="whitespace-nowrap px-6 py-4">                  
                     { editing && todoItemRows[ndx].isBeingEdited ? (
                       <button type="button" 
                         onClick={() => { onSave(todoItemRows[ndx], ndx) }}
