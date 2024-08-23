@@ -32,3 +32,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Vercel Deployment
+
+There is a live Vercel deployment of this project found here: https://next-todos-mmv4l5hzu-wynn-blevins-projects.vercel.app/
+
+## Working With The Database Migrations
+
+This project's live deployment talks to a MySQL database (hosted in aiven).  Running the deployment through the Vercel web interface should run the latest database migration.  
+
+In order to build the database schema locally, you need to run the database migration using prisma.  To run the database migration locally, run:
+```
+npx prisma migrate dev
+```  
